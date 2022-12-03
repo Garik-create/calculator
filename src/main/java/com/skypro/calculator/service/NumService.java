@@ -1,5 +1,6 @@
 package com.skypro.calculator.service;
 
+import com.skypro.calculator.exeption.IllegalNumberException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,27 +11,23 @@ public class NumService {
         return "Добро пожаловать в калькулятор!";
     }
 
-    public String getSum(int num1, int num2) {
-        int sum = num1 + num2;
-        return (num1 + " + " + num2 + " = " + sum);
+    public int getSum(int num1, int num2) {
+        return num1 + num2;
     }
 
-    public String getDifference(int num1, int num2) {
-        int diff = num1 - num2;
-        return (num1 + " - " + num2 + " = " + diff);
+    public int getDifference(int num1, int num2) {
+        return num1 - num2;
     }
 
-    public String getMultiply(int num1, int num2) {
-        int mult = num1 * num2;
-        return (num1 + " * " + num2 + " = " + mult);
+    public int getMultiply(int num1, int num2) {
+        return num1 * num2;
     }
 
-    public String getDivision(int num1, int num2) {
+    public double getDivision(int num1, int num2) {
         if (num2 != 0) {
-            int div = (num1 / num2);
-            return (num1 + " / " + num2 + " = " + div);
+            return (double)num1 / num2;
         } else {
-            return ("Деленгие на ноль запрещено!");
+            throw new IllegalNumberException("Делить на ноль нельзя!");
         }
     }
 }
